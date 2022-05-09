@@ -1,0 +1,77 @@
+
+kernelfull.o:     file format elf32-i386
+
+SYMBOL TABLE:
+00000000 l    d  .text	00000000 .text
+00000000 l    d  .rodata	00000000 .rodata
+00000000 l    d  .asm	00000000 .asm
+00000000 l    d  .data	00000000 .data
+00000000 l    d  .bss	00000000 .bss
+00000000 l    d  .stab	00000000 .stab
+00000000 l    d  .stabstr	00000000 .stabstr
+00000000 l    d  .comment	00000000 .comment
+00000000 l    d  .debug_aranges	00000000 .debug_aranges
+00000000 l    d  .debug_info	00000000 .debug_info
+00000000 l    d  .debug_abbrev	00000000 .debug_abbrev
+00000000 l    d  .debug_line	00000000 .debug_line
+00000000 l    d  .debug_frame	00000000 .debug_frame
+00000000 l    d  .debug_str	00000000 .debug_str
+00000000 l    d  .debug_ranges	00000000 .debug_ranges
+00000000 l    df *ABS*	00000000 ./src/kernel.asm
+00000008 l       *ABS*	00000000 CODE_SEG
+00000010 l       *ABS*	00000000 DATA_SEG
+00000000 l    df *ABS*	00000000 kernel.c
+00000000 l    df *ABS*	00000000 idt.c
+00000000 l    df *ABS*	00000000 memory.c
+00000000 l    df *ABS*	00000000 heap.c
+00000630 l     F .text	00000042 heap_validate_table
+00000680 l     F .text	0000000f heap_validate_alignment
+000007e0 l     F .text	00000015 heap_get_entry_type
+00000910 l     F .text	00000027 heap_align_value_to_upper_block
+00000000 l    df *ABS*	00000000 kheap.c
+00000000 l    df *ABS*	00000000 ./src/idt/idt.asm
+00000000 l    df *ABS*	00000000 ./src/io/io.asm
+00000a30 g     F .text	00000061 kheap_init
+000003c0 g     F .text	0000004d print
+00000848 g     O .bss	00000008 kernel_heap_table
+00000980 g     F .text	0000005c heap_mark_blocks_free
+00000800 g     F .text	000000a8 heap_get_start_block
+00000840 g     O .bss	00000008 kernel_heap
+0000000f g       .asm	00000000 int21h
+00000940 g     F .text	00000032 heap_malloc
+00000290 g     F .text	00000099 terminal_writechar
+00000023 g       .asm	00000000 insb
+000008b0 g     F .text	0000005a heap_malloc_blocks
+00000490 g     F .text	00000027 int21h_handler
+00000ac0 g     F .text	0000001c kfree
+00000006 g     O .bss	00000002 terminal_col
+000004c0 g     F .text	00000017 no_interrupt_handler
+00000550 g     F .text	00000093 idt_init
+00000230 g     F .text	00000052 terminal_putchar
+00000500 g     F .text	00000050 idt_set
+00000410 g     F .text	0000007c kernel_main
+00000750 g     F .text	00000070 heap_mark_block_taken
+00000330 g     F .text	00000053 terminal_initialize
+00000000 g       .text	00000000 _start
+0000003a g       .asm	00000000 outb
+00000690 g     F .text	000000b3 heap_create
+000004e0 g     F .text	00000018 idt_zero
+000005f0 g     F .text	0000003c memset
+00000004 g       .asm	00000000 idt_load
+00000040 g     O .bss	00000800 idt_descriptors
+00000000 g     O .bss	00000004 video_mem
+000009e0 g     F .text	0000001c heap_address_to_block
+00000a00 g     F .text	0000002b heap_free
+000007c0 g     F .text	00000011 heap_block_to_address
+00000002 g       .asm	00000000 disable_interrupts
+00000048 g       .asm	00000000 outw
+00000aa0 g     F .text	0000001b kmalloc
+0000002e g       .asm	00000000 insw
+00000390 g     F .text	0000002b strlen
+00000200 g     F .text	00000027 terminal_make_char
+00000000 g       .asm	00000000 enable_interrupts
+00000004 g     O .bss	00000002 terminal_row
+00000019 g       .asm	00000000 no_interrupt
+00000020 g     O .bss	00000006 idtr_descriptor
+
+

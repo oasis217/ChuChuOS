@@ -30,3 +30,17 @@ int memcmp(void* s1, void* s2, int count)
 
     return 0;  // a return of 0 means both the strings are equal
 }
+
+//--------------------------------------------------------
+void* memcpy(void* dest, void* src, int len)
+{
+    char* d = dest;
+    char* s = src;
+
+    while(len--)
+    {
+        *d++=*s++;
+    }
+
+    return dest;
+}

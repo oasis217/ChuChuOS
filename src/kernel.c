@@ -110,12 +110,13 @@ void kernel_main()
     // after initializing the IDT, now enabling interrupts
      enable_interrupts();
 
-    struct disk* disk2 = disk_get(0);
 
-    if(disk2)
+    int fd = fopen("0:/hello.txt", "r");
+    if (fd)
     {
-        
+        print("We opened hello.txt\n");
     }
+
     while(1)
     {
 

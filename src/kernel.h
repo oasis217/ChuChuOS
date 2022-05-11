@@ -10,4 +10,8 @@
 void kernel_main();
 void print(const char* str);
 
+#define ERROR(value) (void*)(value)    
+#define ERROR_I(value) (int)(value)
+#define ISERR(value) ( (int)value < 0)  // return 1 if val < 0, i.e. it is an error !!
+
 #endif

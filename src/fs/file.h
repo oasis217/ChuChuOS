@@ -43,10 +43,12 @@ struct filesystem
 
 struct file_descriptor
 {
-    int index;  // file descriptor index
-    struct filesystem* filesystem;
+    int index;  // index in the filedescriptors array. Remembers we need to have multiple file descriptors
+                // in an array, bcz we can communicate with different storage media each having their
+                // own filesystem with particular attributes (even if they are the same).
+    struct filesystem* filesystem;   // filesystem of the disk
 
-    void* privte;  //  
+    void* privte;  //  basically pointer returned by fopen()
 
     struct disk* disk;   // the disk that the file-descriptor should be used on.
 };
@@ -54,7 +56,7 @@ struct file_descriptor
 
 void fs_init();
 void fs_insert_filesystem(struct filesystem* filesystem);
-int fopen(const char* filename, const char* mode);
+int fopen(const char* filename, const char* mode_str);
 struct filesystem* fs_resolve(struct disk* disk);
 
 

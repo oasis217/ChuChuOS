@@ -124,6 +124,7 @@ void pathparser_free(struct path_root* root)
 //---------------------------------------------------------------------
 struct path_root* pathparser_parse(const char* path, const char* current_directory_path)
 {
+    // for the time being send NULL for current_directory_path
     int response = 0;
     const char* tmp_path = path;
     struct path_root* path_root = 0;

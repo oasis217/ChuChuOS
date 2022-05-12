@@ -217,3 +217,90 @@ out:
 }
 
 
+//-----------------------------------------------------------------------------
+
+int fread(void* read_buf, uint32_t size, uint32_t nmemb, int fd)
+{
+    int res = 0;
+
+    if(size == 0 || nmemb == 0 || fd < -1)
+    {
+        res = -EINVARG;
+        goto out;
+    }
+    
+    struct file_descriptor* desc = file_get_descriptor(fd);
+    if(!desc)
+    {
+        res = -EINVARG;
+        goto out;
+    }
+
+    res = desc->filesystem->read(desc->disk,desc->privte,size,nmemb,(char*)read_buf);
+
+out:
+    return res;
+}
+
+//----------------------------------------------------------------------------------
+int fseek(int fd, int offset, FILE_SEEK_MODE whence)
+{
+    int res = 0;
+    struct file_descriptor* desc = file_get_descriptor(fd);
+    if(!desc)
+    {
+        res = -EIO;
+        goto out;
+    }
+
+    res = desc->filesystem->seek(desc->privte,offset,whence);
+
+out:
+    return res;
+
+}
+
+//----------------------------------------------------------------------------------
+int fstat(int fd, struct file_stat* stat)
+{
+    int res = 0;
+    struct file_descriptor* descriptor = file_get_descriptor(fd);
+    if(!descriptor)
+    {
+        res = -EIO;
+        goto out;
+    }
+
+    res = descriptor->filesystem->stat(descriptor->disk,descriptor->privte,stat);
+
+out:
+    return res;
+}
+
+//----------------------------------------------------------------------------------
+static void file_free_descriptor(struct file_descriptor* descriptor)
+{
+    file_descriptors[descriptor->index-1] = 0x00;
+    kfree(descriptor);
+}
+
+//----------------------------------------------------------------------------------
+int fclose(int fd)
+{
+    int res=0;
+    struct file_descriptor* descriptor = file_get_descriptor(fd);
+    if(!descriptor)
+    {
+        res = -EINVARG;
+        goto out;
+    }
+
+    res = descriptor->filesystem->close(descriptor->privte);
+
+    if(res == CHUCHUOS_ALL_OK)
+    {
+        file_free_descriptor(descriptor);
+    }
+out:
+    return res;
+}
